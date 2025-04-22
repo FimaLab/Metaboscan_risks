@@ -35,7 +35,7 @@ def calculate_risks(data_path, data_sa_path):
 
 st.title('Расчет риска по метаболитам')
 
-# Пути к файлам (можно заменить на загрузку через st.file_uploader)
+# Пути к файлам
 calculation_file = st.file_uploader('Загрузите расчетный файл', type=['xlsx'])
 patient_file = st.file_uploader('Загрузите файл пациента', type=['xlsx'])
 
@@ -80,16 +80,12 @@ if calculation_file and patient_file:
     # Закрашивание каждого уровня
     for i in range(len(levels) - 1):
         ax.fill_between(angles, levels[i], levels[i + 1], color=colors[i], alpha=0.3)
-
-    
+ 
     # Построение
     ax.fill(angles, risk_levels, color='blue', alpha=0.25)
     ax.plot(angles, risk_levels, color='blue', linewidth=2)
-
     ax.set_xticks(angles[:-1])
     ax.set_xticklabels(labels, fontsize=10)
-    
-    # Расположить подписи снаружи
     ax.tick_params(axis='x', pad=-5)  # увеличьте pad для отступа
 
 
